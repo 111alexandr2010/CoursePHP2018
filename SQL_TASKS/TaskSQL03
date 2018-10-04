@@ -1,0 +1,16 @@
+USE world;
+
+SELECT CountryCode, AVG (Population)
+FROM country
+GROUP BY CountryCode
+ORDER BY Population DESC;
+
+SELECT CountryCode, Count(Name)
+FROM city
+GROUP BY CountryCode;
+
+SELECT CountryCode, COUNT(Name)
+FROM city
+GROUP BY CountryCode
+HAVING COUNT(Name) >= 2
+ORDER BY COUNT(Name);

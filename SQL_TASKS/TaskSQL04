@@ -1,0 +1,48 @@
+USE world;
+SELECT UPPER( Name ), LOWER( Continent )
+FROM country
+ORDER BY CHAR_LENGTH(Name);
+
+SELECT Name, SQRT(SurfaceArea/PI())
+FROM country
+ORDER BY SQRT(SurfaceArea/PI()) DESC;
+
+
+DROP DATABASE my_shop;
+CREATE DATABASE my_shop;
+USE my_shop;
+
+CREATE TABLE categories
+(
+   id INT AUTO_INCREMENT,
+   name VARCHAR(55) NOT NULL UNIQUE,
+   PRIMARY KEY(id)
+);
+
+CREATE TABLE goods
+(
+    id INT AUTO_INCREMENT,
+    name VARCHAR(75) NOT NULL UNIQUE,
+    categoryID INT NOT NULL,
+    price DOUBLE DEFAULT 0,
+    quantity INT DEFAULT 0,
+    lastDeliveryDate DATE,
+    PRIMARY KEY(id),
+    FOREIGN KEY(categoryID) REFERENCES categories(id)
+);
+
+INSERT INTO categories(name)
+VALUES ('инструмент'), ('метизы'), ('техника'), ('удобрения');
+
+INSERT INTO goods(name, categoryID, price, quantity, lastDeliveryDate)
+VALUES ('гайка М8', 2, 1.5, 1000, 2016-05-15), ('болт М8', 2, 2.5, 1000, 2016-05-20),
+	   ('лопата', 1, 500, 20, 2017-03-22), ('грабли', 1, 500, 20, 2015-12-24), ('триммер', 3, 7500, 5, 2018-02-11),
+	   ('вертикутер', 3, 15000, 3, 2017-11-08), ('для газона', 4, 800, 10, 2017-11-08);
+
+SELECT name, DAY(lastDeliveryDate), MONTH(lastDeliveryDate), YEAR(lastDeliveryDate)
+FROM goods;
+
+SELECT COUNT(name), YEAR(lastDeliveryDate)
+FROM goods
+GROUP BY YEAR(lastDeliveryDate);
+
