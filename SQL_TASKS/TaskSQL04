@@ -1,7 +1,7 @@
 USE world;
 SELECT UPPER( Name ), LOWER( Continent )
 FROM country
-ORDER BY CHAR_LENGTH(Name);
+ORDER BY CHAR_LENGTH(Name) DESC;
 
 SELECT Name, SQRT(SurfaceArea/PI())
 FROM country

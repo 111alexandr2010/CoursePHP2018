@@ -3,7 +3,7 @@ USE world;
 SELECT CountryCode, AVG (Population)
 FROM country
 GROUP BY CountryCode
-ORDER BY Population DESC;
+ORDER BY AVG (Population) DESC;
 
 SELECT CountryCode, Count(Name)
 FROM city
